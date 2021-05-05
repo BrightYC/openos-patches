@@ -35,16 +35,18 @@ if gpu then
   gpu.fill(1, 1, w, h, " ")
 
   local aspectWidth, aspectHeight, proportion = component.invoke(screen, "getAspectRatio")
-  local width, height = gpu.maxResolution()
+  w, h = gpu.maxResolution()
 
   proportion = 2*(16*aspectWidth-4.5)/(16*aspectHeight-4.5)
-  if proportion > width / height then
-    height = width / proportion
+  if proportion > w / h then
+    h = w / proportion
   else
-    width = height * proportion
+    w = h * proportion
   end
 
-  gpu.setResolution(math.floor(width * 0.65), math.floor(height * 0.65))
+  w, h = math.floor(w * 0.65), math.floor(h * 0.65)
+
+  gpu.setResolution(w, h)
   gpu.fill(1, 1, w, h, " ")
 end
 
@@ -88,6 +90,7 @@ local function status(msg)
       y = y + 1
     end
   end
+
   -- boot can be slow in some environments, protect from timeouts
   if uptime() - last_sleep > 1 then
     local signal = table.pack(pull(0))
