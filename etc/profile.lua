@@ -6,7 +6,6 @@ local resolutionScale = 1
 
 if tty.isAvailable() then
     if io.stdout.tty then
-        io.write("\27[40m\27[37m")
         local screen, gpu = component.getPrimary("screen"), component.getPrimary("gpu")
         local aspectWidth, aspectHeight, proportion = screen.getAspectRatio()
         local width, height = gpu.maxResolution()
