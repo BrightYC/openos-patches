@@ -2,6 +2,7 @@ local shell = require("shell")
 local tty = require("tty")
 local fs = require("filesystem")
 local component = require("component")
+local resolutionScale = 1
 
 if tty.isAvailable() then
     if io.stdout.tty then
@@ -12,16 +13,16 @@ if tty.isAvailable() then
     
         proportion = 2*(16*aspectWidth-4.5)/(16*aspectHeight-4.5)
         if proportion > width / height then
-            height = math.floor(width / proportion)
+            height = width / proportion
         else
-            width = math.floor(height * proportion)
+            width = height * proportion
         end
 
-        gpu.setResolution(width, height)
+        gpu.setResolution(math.floor(width * resolutionScale), math.floor(height * resolutionScale))
         tty.clear()
     end
 end
--- dofile("/etc/motd")
+dofile("/etc/motd")
 
 shell.setAlias("dir", "ls")
 shell.setAlias("move", "mv")

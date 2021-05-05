@@ -10,7 +10,17 @@ local full
 vt100.rules[{"%[", "[%d;]*", "m"}] = function(window, _, number_text)
   -- prefix and suffix ; act as reset
   -- e.g. \27[41;m is actually 41 followed by a reset
-  local colors = {0x1e1e1e,0xac1c27,0x2eac63,0xd5d64e,0x0000ff,0xff00ff,0x00B6ff,0xffffff}
+  --              gray     red      green    yellow   d blue   pink     l blue   white
+  local colors = {
+    0x1e1e1e, -- gray
+    0xac1c27, -- red
+    0x2eac63, -- green
+    0xd5d64e, -- yellow
+    0x0000ff, -- dark blue
+    0xff00ff, -- pink
+    0x00B6ff, -- light blue
+    0xffffff -- white
+  }
   local fg, bg = window.gpu.setForeground, window.gpu.setBackground
   if window.flip then
     fg, bg = bg, fg
