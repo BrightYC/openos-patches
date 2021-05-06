@@ -48,7 +48,7 @@ os.setenv("HOME", "/home/")
 os.setenv("IFS", " ")
 os.setenv("MANPATH", "/usr/man:.")
 os.setenv("PAGER", "less")
-os.setenv("PS1", "\27[32mroot\27[37m@localhost \27[40m\27[32m$HOSTNAME$HOSTNAME_SEPARATOR$PWD\27[37m> \27[37m")
+os.setenv("PS1", "\27[32m$HOSTNAME$HOSTNAME_SEPARATOR$PWD\27[37m> \27[37m")
 os.setenv("LS_COLORS", "di=0;36:fi=0:ln=0;33:*.lua=0;32")
 
 shell.setWorkingDirectory(os.getenv("HOME"))
